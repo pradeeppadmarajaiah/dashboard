@@ -65,6 +65,31 @@ public class DashboardController {
 		return companies;
 	}
 
+	@RequestMapping("/rCompanies")
+	public List<Company> getRealCompanies() {
+
+		List<Company> companies = new ArrayList<>();
+		companies.add(new Company("E1", "EAT24", 100.00, 23.56, 76.44));
+		companies.add(new Company("Y1", "YELP", 857.00, 52.12, 804.88));
+		companies.add(new Company("U1", "Uber eat", 500.0, 19.5, 480.5));
+		companies.add(new Company("S1", "seamless", 1000.0, 120.0, 880.0));
+		companies.add(GrubHubLoginHelper.getCompany());
+		return companies;
+	}
+
+	@RequestMapping("/rCompanies/{id}")
+	public Company getRCompany(@PathVariable String id) {
+
+		List<Company> companies = new ArrayList<>();
+		companies.add(new Company("E1", "EAT24", 100.00, 23.56, 76.44));
+		companies.add(new Company("Y1", "YELP", 857.00, 52.12, 804.88));
+		companies.add(new Company("U1", "Uber eat", 500.0, 19.5, 480.5));
+		companies.add(new Company("S1", "seamless", 1000.0, 120.0, 880.0));
+		companies.add(GrubHubLoginHelper.getCompany());
+		return companies.stream().filter(t -> t.getId().equals(id)).findFirst().get();
+
+	}
+
 	@RequestMapping("/companies/{id}")
 	public Company getCompany(@PathVariable String id) {
 
